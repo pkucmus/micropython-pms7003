@@ -1,5 +1,7 @@
 # PMS7003 Micropython Driver
 
+This is a micropython adaptaion inspired by this Raspberry implementation: https://www.raspberrypi.org/forums/viewtopic.php?p=1244895&sid=5f9dab0e19a7086f9b900b51316ff349#p1244895
+
 ## Caveats
 
 ### UART
@@ -10,6 +12,7 @@ The documentation claims that the device needs to run on 5V as it's internal fan
 **This was not the case for me** I could not read any data other than zeors from the UART when running on 5V. 
 Powering the whole device with 3.3V works fine (even though the fan may spin with slower).
 I tested running on 3.3V on six different PMS7003 devices.
+[Micropython forum link where I asked for help](https://forum.micropython.org/viewtopic.php?t=4566)
 
 ## Example usage
 
