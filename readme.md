@@ -23,20 +23,20 @@ It's generaly a good idea not to read faster than the device writes.
 
 The dicrionary will contain the following data:
 
-| Key         | Description |                                                |
-|:------------|:-------------------------------------------------------------|
-| PM1_0       | PM 1.0 concentration μ g/m3 (factory environment)            |
-| PM2_5       | PM 2.5 concentration μ g/m3 (factory environment)            |
-| PM10_0      | PM 10 concentration μ g/m3 (factory environment)             |
-| PM1_0_ATM   | PM 1.0 concentration μ g/m3 (atmospheric environment)        |
-| PM2_5_ATM   | PM 2.5 concentration μ g/m3 (atmospheric environment)        |
-| PM10_0_ATM  | PM 10 concentration μ g/m3 (atmospheric environment)         |
-| PCNT_0_3    | Particle count of diameter beyond 0.3 um in 0.1 liter or air |
-| PCNT_0_5    | Particle count of diameter beyond 0.5 um in 0.1 liter or air |
-| PCNT_1_0    | Particle count of diameter beyond 1.0 um in 0.1 liter or air |
-| PCNT_2_5    | Particle count of diameter beyond 2.5 um in 0.1 liter or air |
-| PCNT_5_0    | Particle count of diameter beyond 5.0 um in 0.1 liter or air |
-| PCNT_10_0   | Particle count of diameter beyond 10 um in 0.1 liter or air  |
+Key         | Description |                                               
+:-----------|:------------------------------------------------------------
+PM1_0       | PM 1.0 concentration μ g/m3 (factory environment)           
+PM2_5       | PM 2.5 concentration μ g/m3 (factory environment)           
+PM10_0      | PM 10 concentration μ g/m3 (factory environment)            
+PM1_0_ATM   | PM 1.0 concentration μ g/m3 (atmospheric environment)       
+PM2_5_ATM   | PM 2.5 concentration μ g/m3 (atmospheric environment)       
+PM10_0_ATM  | PM 10 concentration μ g/m3 (atmospheric environment)        
+PCNT_0_3    | Particle count of diameter beyond 0.3 um in 0.1 liter or air
+PCNT_0_5    | Particle count of diameter beyond 0.5 um in 0.1 liter or air
+PCNT_1_0    | Particle count of diameter beyond 1.0 um in 0.1 liter or air
+PCNT_2_5    | Particle count of diameter beyond 2.5 um in 0.1 liter or air
+PCNT_5_0    | Particle count of diameter beyond 5.0 um in 0.1 liter or air
+PCNT_10_0   | Particle count of diameter beyond 10 um in 0.1 liter or air 
 
 (and four more with `FRAME_LENGTH`, `VERSION`, `ERROR` and `CHECKSUM`)
 
