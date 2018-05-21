@@ -2,6 +2,8 @@
 
 This is a micropython adaptaion inspired by this Raspberry implementation: https://www.raspberrypi.org/forums/viewtopic.php?p=1244895&sid=5f9dab0e19a7086f9b900b51316ff349#p1244895
 
+[Here](https://botland.com.pl/index.php?controller=attachment&id_attachment=2182) you can find the data sheet from [botland.com.pl](https://botland.com.pl/czujniki-czystosci-powietrza/10924-czujnik-pylu-czystosci-powietrza-pms7003-33v-uart.html)
+
 ## Caveats
 
 ### UART
