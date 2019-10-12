@@ -11,7 +11,7 @@ I used it with an ESP32. Tried with ESP8266 but since it has only one (full)UART
 
 ### Voltage
 The documentation claims that the device needs to run on 5V as it's internal fan is driven by 5V where the data pins output 3.3V for high.
-**This was not the case for me** I could not read any data other than zeros from the UART when running on 5V. 
+**This was not the case for me** I could not read any data other than zeros from the UART when running on 5V.
 Powering the whole device with 3.3V works fine (even though the fan may spin with slower).
 I tested running on 3.3V on six different PMS7003 devices.
 [MicroPython forum link where I asked for help](https://forum.micropython.org/viewtopic.php?t=4566)
@@ -41,9 +41,32 @@ PCNT_0_5    | Particle count of diameter beyond 0.5 um in 0.1 liter or air
 PCNT_1_0    | Particle count of diameter beyond 1.0 um in 0.1 liter or air
 PCNT_2_5    | Particle count of diameter beyond 2.5 um in 0.1 liter or air
 PCNT_5_0    | Particle count of diameter beyond 5.0 um in 0.1 liter or air
-PCNT_10_0   | Particle count of diameter beyond 10 um in 0.1 liter or air 
+PCNT_10_0   | Particle count of diameter beyond 10 um in 0.1 liter or air
 
 (and four more with `FRAME_LENGTH`, `VERSION`, `ERROR` and `CHECKSUM`)
+
+# Passive Driver
+
+```python
+from pms7003_passive import PassivePMS7003
+
+pms = PassivePMS7003(UART(2)) # on UART 2 ...
+
+def do_work(_):
+    pms.wakeup()
+    try:
+        pms_data = pms.read()
+        print(pms_data)
+    except IncorrectData:
+        print('bad data')
+    finally:
+        pms.sleep()
+
+# usually performing readings in interrupt handler (e.g. Timer's)
+# so use schedule to avoid heap lock limitations:
+# https://docs.micropython.org/en/latest/reference/isr_rules.html
+callback = lambda _: micropython.schedule(do_work, 0)
+```
 
 # AQI
 
