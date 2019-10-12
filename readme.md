@@ -47,12 +47,17 @@ PCNT_10_0   | Particle count of diameter beyond 10 um in 0.1 liter or air
 
 # Passive Driver
 
+PMS7003 can work also in passive mode. It means that user has to request data
+explicitly by sending a command message with appropriate data.
+More about this [article](https://joshefin.xyz/air-quality-with-raspberrypi-pms7003-and-java/).
+Details are in [datasheet](https://www.espruino.com/datasheets/PMS7003.pdf) as well.
+
 ```python
-from pms7003_passive import PassivePMS7003
+from pms7003_passive import PassivePMS7003, IncorrectData
 
 pms = PassivePMS7003(UART(2)) # on UART 2 ...
 
-def do_work(_):
+def do_work(__):
     pms.wakeup()
     try:
         pms_data = pms.read()
@@ -65,7 +70,7 @@ def do_work(_):
 # usually performing readings in interrupt handler (e.g. Timer's)
 # so use schedule to avoid heap lock limitations:
 # https://docs.micropython.org/en/latest/reference/isr_rules.html
-callback = lambda _: micropython.schedule(do_work, 0)
+callback = lambda __: micropython.schedule(do_work, 0)
 ```
 
 # AQI
