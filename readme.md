@@ -53,9 +53,10 @@ More about this [article](https://joshefin.xyz/air-quality-with-raspberrypi-pms7
 Details are in [datasheet](https://www.espruino.com/datasheets/PMS7003.pdf) as well.
 
 ```python
+import micropython
 from pms7003 import PassivePms7003
 
-pms = PassivePMS7003(uart=2)
+pms = PassivePms7003(uart=2)
 
 def do_work(__):
     pms.wakeup()
