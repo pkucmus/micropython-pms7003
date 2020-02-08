@@ -18,12 +18,12 @@ I tested running on 3.3V on six different PMS7003 devices.
 
 ## Example usage
 
-    from pms7003 import PMS7003
+    from pms7003 import Pms7003
 
-    pms = PMS7003()
+    pms = Pms7003(uart=2)
     pms_data = pms.read()
 
-`PMS7003.read()` will return a dictionary with *the oldest* read that is in the buffer. It means that your reads will always be a bit off in time, depending on the UART's buffer size and the frequency of your reads.
+`Pms7003.read()` will return a dictionary with *the oldest* read that is in the buffer. It means that your reads will always be a bit off in time, depending on the UART's buffer size and the frequency of your reads.
 It's generaly a good idea not to read faster than the device writes.
 
 The dictionary will contain the following data:
@@ -53,19 +53,17 @@ More about this [article](https://joshefin.xyz/air-quality-with-raspberrypi-pms7
 Details are in [datasheet](https://www.espruino.com/datasheets/PMS7003.pdf) as well.
 
 ```python
-from pms7003_passive import PassivePMS7003, IncorrectData
+from pms7003 import PassivePms7003
 
-pms = PassivePMS7003(UART(2)) # on UART 2 ...
+pms = PassivePMS7003(uart=2)
 
 def do_work(__):
     pms.wakeup()
-    try:
-        pms_data = pms.read()
-        print(pms_data)
-    except IncorrectData:
-        print('bad data')
-    finally:
-        pms.sleep()
+    
+    pms_data = pms.read()
+    print(pms_data)
+    
+    pms.sleep()
 
 # usually performing readings in interrupt handler (e.g. Timer's)
 # so use schedule to avoid heap lock limitations:
@@ -78,10 +76,10 @@ callback = lambda __: micropython.schedule(do_work, 0)
 This repo also contains a simple class that can help calculate the Air Quality Index (as described [here](https://en.wikipedia.org/wiki/Air_quality_index#Computing_the_AQI))
 
 ```python
-from pms7003 import PMS7003
+from pms7003 import Pms7003
 from aqi import AQI
 
-pms = PMS7003()
+pms = Pms7003(uart=2)
 pms_data = pms.read()
 aqi = AQI.aqi(pms_data['PM2_5_ATM'], pms_data['PM10_0_ATM'])
 ```
