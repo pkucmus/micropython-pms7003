@@ -40,7 +40,7 @@ class AQI:
     @classmethod
     def _calculate_aqi(cls, breakpoints, data):
         for index, data_range in enumerate(breakpoints):
-            if data <= data_range[0]:
+            if data <= data_range[1]:
                 break
 
         i_low, i_high = cls.AQI[index]
